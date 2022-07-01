@@ -1,0 +1,35 @@
+<%- include('header'); -%>
+
+  <!-- change color of h1 based on value of day -->
+  <div id="heading" class="box">
+    <h1><%= ejsTodosTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <!-- set up todo list --->
+    <!--loop through the ejsTodoItem object-->
+    <% ejsTodoItem.forEach((item) => { %>
+
+      <form action="/delete" method="post">
+        <div class="item">
+          <!--
+            use onChang to submit the checked item
+            use the value binded to name (checkbox) to identify deleted todo item 
+          -->
+          <input type="checkbox" onChange="this.form.submit()" name="checkbox" value="<%= item._id %>" > 
+          <p><%= item.name %></p>
+        </div>
+      </form>
+
+    <% }); %>
+
+    <div class="item">
+      <!-- setup input form -->
+      <form action="/" method="post">
+        <input type="text" name="todoItem" placeholder="New Todo" autocomplete="off">
+        <button type="submit">+</button>
+      </form>
+    </div>
+  </div>
+
+<%- include('footer'); -%>
